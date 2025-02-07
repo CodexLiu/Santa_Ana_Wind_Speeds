@@ -68,51 +68,51 @@ The project includes methods to:
 
 The probability density function for wind speeds follows the Weibull distribution:
 
-f(x; k, λ) = (k/λ)(x/λ)^(k-1)exp(-(x/λ)^k)
+$$ f(x; k, \lambda) = \frac{k}{\lambda}\left(\frac{x}{\lambda}\right)^{k-1}e^{-(x/\lambda)^k} $$
 
 where:
 
-- k = shape parameter (2.73 for Station 1, 2.62 for Station 2)
-- λ = scale parameter (4.15 for Station 1, 4.00 for Station 2)
-- x = wind speed (m/s)
+- $k$ = shape parameter (2.73 for Station 1, 2.62 for Station 2)
+- $\lambda$ = scale parameter (4.15 for Station 1, 4.00 for Station 2)
+- $x$ = wind speed (m/s)
 
 #### Temperature (Normal Distribution)
 
 Daily temperature variations follow a normal distribution:
 
-f(x; μ, σ) = (1/(σ√(2π))) exp(-(x-μ)²/(2σ²))
+$$ f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$
 
 where:
 
-- μ = mean temperature (20.5°C)
-- σ = standard deviation (6.83°C)
-- x = temperature (°C)
+- $\mu$ = mean temperature (20.5°C)
+- $\sigma$ = standard deviation (6.83°C)
+- $x$ = temperature (°C)
 
 #### Temporal Correlation
 
-The autocorrelation function (ACF) at lag k is computed as:
+The autocorrelation function (ACF) at lag $k$ is computed as:
 
-ρ(k) = cov(Xt, Xt+k) / var(Xt)
+$$ \rho(k) = \frac{\text{cov}(X*t, X*{t+k})}{\text{var}(X_t)} $$
 
 where:
 
-- Xt = value at time t
-- k = time lag
-- cov = covariance
-- var = variance
+- $X_t$ = value at time $t$
+- $k$ = time lag
+- $\text{cov}$ = covariance
+- $\text{var}$ = variance
 
 #### Copula Dependencies
 
 The Gaussian copula density is given by:
 
-c(u1,...,ud) = |Σ|^(-1/2) exp(-1/2 η'(Σ^(-1) - I)η)
+$$ c(u_1,\ldots,u_d) = |\Sigma|^{-1/2} \exp\left(-\frac{1}{2} \eta'(\Sigma^{-1} - I)\eta\right) $$
 
 where:
 
-- Σ = correlation matrix
-- η = (Φ^(-1)(u1),...,Φ^(-1)(ud))
-- Φ^(-1) = inverse standard normal CDF
-- u1,...,ud = uniform margins
+- $\Sigma$ = correlation matrix
+- $\eta = (\Phi^{-1}(u_1),\ldots,\Phi^{-1}(u_d))$
+- $\Phi^{-1}$ = inverse standard normal CDF
+- $u_1,\ldots,u_d$ = uniform margins
 
 ### Distribution Parameters
 
