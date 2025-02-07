@@ -62,6 +62,58 @@ The project includes methods to:
 
 > **⚠️ Important Note**: The Gaussian copula fitting process required significant computational resources due to the dataset size (746,000 hourly readings from 1940-2025). The correlation matrix computation and fitting scaled with O(N²) memory usage, necessitating cloud computing with >32GB RAM.
 
+### Distribution Parameters and Equations
+
+#### Wind Speed (Weibull Distribution)
+
+The probability density function for wind speeds follows the Weibull distribution:
+
+f(x; k, λ) = (k/λ)(x/λ)^(k-1)exp(-(x/λ)^k)
+
+where:
+
+- k = shape parameter (2.73 for Station 1, 2.62 for Station 2)
+- λ = scale parameter (4.15 for Station 1, 4.00 for Station 2)
+- x = wind speed (m/s)
+
+#### Temperature (Normal Distribution)
+
+Daily temperature variations follow a normal distribution:
+
+f(x; μ, σ) = (1/(σ√(2π))) exp(-(x-μ)²/(2σ²))
+
+where:
+
+- μ = mean temperature (20.5°C)
+- σ = standard deviation (6.83°C)
+- x = temperature (°C)
+
+#### Temporal Correlation
+
+The autocorrelation function (ACF) at lag k is computed as:
+
+ρ(k) = cov(Xt, Xt+k) / var(Xt)
+
+where:
+
+- Xt = value at time t
+- k = time lag
+- cov = covariance
+- var = variance
+
+#### Copula Dependencies
+
+The Gaussian copula density is given by:
+
+c(u1,...,ud) = |Σ|^(-1/2) exp(-1/2 η'(Σ^(-1) - I)η)
+
+where:
+
+- Σ = correlation matrix
+- η = (Φ^(-1)(u1),...,Φ^(-1)(ud))
+- Φ^(-1) = inverse standard normal CDF
+- u1,...,ud = uniform margins
+
 ### Distribution Parameters
 
 The fitted marginal distributions yielded the following parameters:
