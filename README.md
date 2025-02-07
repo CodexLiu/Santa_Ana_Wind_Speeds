@@ -68,15 +68,15 @@ The fitted marginal distributions yielded the following parameters:
 
 **Wind Speed (Weibull Distribution)**
 
-- Station 1: shape=2.1, scale=11.3
-- Station 2: shape=2.0, scale=10.8
-  The shape parameters around 2.0 indicate a typical wind speed distribution, with the slightly different scales showing spatial variation between stations.
+- Station 1: shape=2.73, loc=10.64, scale=4.15
+- Station 2: shape=2.62, loc=10.76, scale=4.00
+  These parameters show similar wind patterns between stations, with shape parameters >2 indicating a more peaked distribution than typical Weibull wind speeds.
 
 **Temperature (Normal Distribution)**
 
-- Mean = 20.3°C
-- Standard deviation = 8.7°C
-  These parameters capture both the annual average and seasonal variations typical of the Santa Ana region.
+- Mean = 20.5°C
+- Standard deviation = 6.83°C
+  These parameters reflect the Mediterranean climate of the Santa Ana region, with moderate temperatures and significant seasonal variation.
 
 **Soil Moisture (Beta Distribution)**
 
@@ -85,59 +85,53 @@ The fitted marginal distributions yielded the following parameters:
 - Scale = 0.4
   The parameters indicate a right-skewed distribution typical of semi-arid regions, with most values clustering in the lower moisture range.
 
-### Temporal Patterns
-
-![Temporal Patterns](weather_analysis_output/temporal_patterns.png)
-
-The 30-day snapshot shows:
-
-- Clear diurnal patterns in wind speeds
-- Strong correlation between stations
-- Expected seasonal temperature cycle
-- Gradual soil moisture changes
-
 ### Distribution Fits
 
-![Wind Speed Distribution](weather_analysis_output/wind_speed_1_distribution.png)
-![Temperature Distribution](weather_analysis_output/temperature_distribution.png)
-![Soil Moisture Distribution](weather_analysis_output/soil_moisture_distribution.png)
+![Wind Speed 1 Distribution](weather_analysis_output/plots/wind_speed_1_distribution.png)
+![Wind Speed 2 Distribution](weather_analysis_output/plots/wind_speed_2_distribution.png)
+![Temperature Distribution](weather_analysis_output/plots/temperature_distribution.png)
 
-The fitted distributions show excellent agreement with the empirical data, particularly:
+The fitted distributions show excellent agreement with the empirical data. The analysis reveals:
 
-- The Weibull distribution captures the characteristic right-skewed wind speed pattern
-- Temperature variations follow the expected normal distribution
-- Soil moisture's bounded nature is well-represented by the beta distribution
+- Both wind speed stations follow similar Weibull patterns
+- Temperature follows the expected normal distribution with seasonal variations
+- Mean wind speeds around 14.3 m/s for both stations indicate strong Santa Ana conditions
 
-### Dependency Structure
+### Temporal Patterns
 
-![Copula Dependencies](weather_analysis_output/copula_dependencies.png)
+![Temporal Patterns](weather_analysis_output/plots/temporal_patterns.png)
 
-The copula analysis revealed:
+The temporal analysis shows strong correlations between variables:
 
-- Strong positive correlation between wind speeds at different stations (ρ = 0.82)
-- Moderate negative correlation between temperature and soil moisture (ρ = -0.45)
-- Weak correlation between wind speeds and temperature (ρ = 0.21)
+- Wind speeds between stations: ρ = 0.82 (strong positive)
+- Temperature vs. soil moisture: ρ = -0.98 (strong negative)
+- Wind speeds vs. temperature: ρ ≈ -0.91 (strong negative)
+- Wind speeds vs. soil moisture: ρ ≈ 0.89 (strong positive)
 
-### Temporal Correlation
+These correlations align with expected physical relationships:
 
-![Autocorrelation](weather_analysis_output/autocorrelation.png)
+- Similar wind patterns at nearby stations
+- Higher temperatures associated with lower soil moisture
+- Stronger winds typically occurring during cooler periods
 
-The autocorrelation analysis shows:
+### Data Ranges and Variability
 
-- Wind speeds maintain significant correlation for ~24 hours
-- Temperature shows strong diurnal and seasonal patterns
-- Soil moisture has the longest persistence, extending beyond 48 hours
+Key statistics from the analysis:
+
+- Wind speeds: 10.7-19.0 m/s (Station 1), 10.8-18.9 m/s (Station 2)
+- Temperature: 9.2-30.8°C
+- Soil moisture: 0.17-0.44 (dimensionless)
 
 ### Method Evaluation
 
 The analysis successfully captured:
 
 1. Realistic marginal distributions for all variables
-2. Physical dependencies between variables
-3. Appropriate temporal correlation structures
-4. Seasonal patterns and trends
+2. Strong physical dependencies between variables
+3. Appropriate value ranges for the Santa Ana region
+4. Expected seasonal patterns
 
-The copula-based approach effectively modeled the complex dependencies while maintaining the correct marginal distributions, though at significant computational cost.
+The Weibull-normal-beta distribution combination effectively modeled the multivariate weather patterns, though the computational cost of the copula approach was significant.
 
 [^1]: Carta, J. A., Ramírez, P., & Velázquez, S. (2009). A review of wind speed probability distributions used in wind energy analysis: Case studies in the Canary Islands. Renewable and Sustainable Energy Reviews, 13(5), 933-955.
 [^2]: Huybers, P., McKinnon, K. A., Rhines, A., & Tingley, M. (2014). U.S. daily temperatures: The meaning of extremes in the context of nonnormality. Journal of Climate, 27(19), 7368-7384.
